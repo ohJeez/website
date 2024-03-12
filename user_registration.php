@@ -71,7 +71,6 @@ if (isset($_POST['user_register'])) {
     $user_username = $_POST['user_username'];
     $user_email = $_POST['user_email'];
     $user_password = $_POST['user_password'];
-    $hash_password = password_hash($user_password, PASSWORD_DEFAULT);
     $conf_user_password = $_POST['conf_user_password'];
     $user_address = $_POST['user_address'];
     $user_contact = $_POST['user_contact'];
@@ -79,30 +78,39 @@ if (isset($_POST['user_register'])) {
     $user_image_tmp = $_FILES['user_image']['tmp_name'];
     $user_ip = getIPAddress();
 
-    //elect query
-    $select_query = "SELECT * FROM user_table WHERE username='$user_username' OR user_email='$user_email'";
-    $result = mysqli_query($con,$select_query);
-    $rows_count = mysqli_num_rows($result);
-    if ($rows_count>0) {
-        echo "<script>alert('USername already exist')</script>";
-    }elseif ($user_password != $conf_user_password) {
-        echo "<script>alert('Password doesnt match')</script>";
-    }
+    // Password validation
+    if (strlen($user_password) < 8 || strlen($user_password) > 16) {
+        echo "<script>alert('Password must be between 8 to 16 characters')</script>";
+    } elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/", $user_password)) {
+        echo "<script>alert('Password must contain at least one uppercase letter, one lowercase letter, one number, one special character, and be 8-16 characters long')</script>";
+    } elseif ($user_password != $conf_user_password) {
+        echo "<script>alert('Password does not match the confirm password')</script>";
+    } else {
+        $hash_password = password_hash($user_password, PASSWORD_DEFAULT);
 
-    else {
-    $target_path = './user_images/' . $user_image;
-    move_uploaded_file($user_image_tmp, $target_path);
-    $insert_query = "INSERT INTO `user_table` (username, user_email, user_password, user_image, user_ip, user_address, user_mobile) VALUES ('$user_username', '$user_email', '$hash_password',
-    '$user_image', '$user_ip', '$user_address', '$user_contact')";
+        // Select query to check if username or email already exist
+        $select_query = "SELECT * FROM user_table WHERE username='$user_username' OR user_email='$user_email'";
+        $result = mysqli_query($con, $select_query);
+        $rows_count = mysqli_num_rows($result);
 
-    $sql_execute = mysqli_query($con,$insert_query);
+        if ($rows_count > 0) {
+            echo "<script>alert('Username or Email already exists')</script>";
+        } else {
+            // Move uploaded file
+            $target_path = './user_images/' . $user_image;
+            move_uploaded_file($user_image_tmp, $target_path);
 
-    if ($sql_execute) {
-        echo "<script>alert('Data Successfully')</script>";
-    }
-    else{
-        die(mysqli_error($con));
-     }
+            // Insert query
+            $insert_query = "INSERT INTO `user_table` (username, user_email, user_password, user_image, user_ip, user_address, user_mobile) VALUES ('$user_username', '$user_email', '$hash_password', '$user_image', '$user_ip', '$user_address', '$user_contact')";
+
+            $sql_execute = mysqli_query($con, $insert_query);
+
+            if ($sql_execute) {
+                echo "<script>alert('Data Successfully')</script>";
+            } else {
+                die(mysqli_error($con));
+            }
+        }
     }
 }
 ?>

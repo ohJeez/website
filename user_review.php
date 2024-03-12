@@ -1,7 +1,6 @@
 <?php
   include("includes/connect.php");
   include('function/common_function.php');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +16,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
     <!-- Navigation Bar -->
     <div class="container-fluid p-0">
         <!-- First child -->

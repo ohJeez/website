@@ -38,7 +38,8 @@
                             <a class="nav-link" href="display_all.php">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Register</a>
+                            <a class="nav-link" href="user_registration.php
+                            +">Register</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
@@ -51,7 +52,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Total Price:100/-</a>
-                        </li>
+                        </li> 
                     </ul>
                     <form class="d-flex"  action="search_product.php" method="get">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
@@ -142,16 +143,16 @@
 <div class="container">
     <div class="row justify-content-center mt-4">
         <div class="col-lg-6">
-            <form action="./user_review.php" method="post" enctype="multipart/form-data">
+            <form action="exp.php" method="post" enctype="multipart/form-data">
                 <!-- Username Input -->
                 <div class="mb-3">
                     <label for="user_name" class="form-label">Enter your Name</label>
-                    <input type="text" id="user_name" class="form-control" autocomplete="off" required="required" name="user_name"/>
+                    <input type="text" id="user_name" class="form-control" autocomplete="off" required name="user_name"/>
                 </div>
                 <!-- Review Input -->
                 <div class="mb-3">
                     <label for="user_review" class="form-label">Write your review here</label>
-                    <textarea class="form-control" id="user_review" name="user_review" rows="5" style="width: 100%;" required></textarea>
+                    <input class="form-control" id="user_review" name="user_review" rows="5" style="width: 100%;" required />
                 </div>
                 <!-- Submit Button -->
                 <div class="mb-3">
@@ -176,15 +177,15 @@
 </html>
 
 <?php
-if (isset($_POST['user_register'])) {
-    // Get the user input
-    $username = $_POST['user_name'];
-    $userreview = $_POST['user_review'];
+if (isset($_GET['user_register'])) {
+    // Get the user input and sanitize them
+    $username = mysqli_real_escape_string($con, $_POST['user_name']);
+    $userreview = mysqli_real_escape_string($con, $_POST['user_review']);
 
-    // Prepare the SQL statement
-    $insert_query = "INSERT INTO user_review (username,review) VALUES ($username, $userreview)";
+    // Prepare the SQL statement with proper quotes around values
+    $insert_query = "INSERT INTO user_review (username, review) VALUES ('$username', '$userreview')";
     
-    // Prepare the statement
+    // Execute the query
     $sql_execute = mysqli_query($con, $insert_query);
 
     if ($sql_execute) {
@@ -196,3 +197,4 @@ if (isset($_POST['user_register'])) {
     }
 }
 ?>
+

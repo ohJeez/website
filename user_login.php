@@ -50,7 +50,7 @@
 </html>
 
 <?php
-if (isset($_POST['user_login'])) {
+if (isset($_POST['user_login.php'])) {
     $user_username = $_POST['user_username'];
     $user_password = $_POST['user_password'];
 

@@ -4,7 +4,7 @@
   $con=mysqli_connect('localhost','root','','haute_harbor');
   if($con)
   {
-    echo "connection successful";
+    //echo "connection successful";
 
    }
   else{
