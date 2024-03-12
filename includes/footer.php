@@ -1,3 +1,3 @@
 <div class="bg-info p-3 text-center">
-           <p>All rights reserved  @- Designed by abc-2023</p>
+           <p>All rights reserved  @- Designed by Petra Offcial-2023</p>
         </div>

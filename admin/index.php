@@ -51,7 +51,7 @@
     <div class="row">
         <div class="col-md-12 bg-secondary p-1 d-flex align-items-center">
             <div class="px-5">
-            <a href="#"><img src="../images/logo.jpg" width="300" height="200" alt="" class="admin_image"></a>             
+            <a href="#"><img src="https://www.shutterstock.com/image-vector/black-silhouette-paw-print-isolated-600nw-1042839922.jpg" width="300" height="200" alt="" class="admin_image"></a>
             <p class="text-light text-center">Admin Name</p>
             </div>
             
@@ -86,7 +86,7 @@
 
     <!-- last child -->
         <div class="bg-info p-3 text-center footer">
-           <p>All rights reserved  @- Designed by abc-2023</p>
+           <p>All rights reserved  @- Designed by Petra Official-2023</p>
         </div>
     </div>
     <!-- Bootstrap JS link -->

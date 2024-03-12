@@ -296,14 +296,14 @@ function view_details(){
                     echo "<div class='col-md-8'>
                             <div class='row'>
                                 <div class='col-md-12'>
-                                    <h4 class='text-center text-info mb-5'>Related Products</h4>
+                                    <h4 class='text-center text-info mb-5'>Related Images</h4>
                                 </div>
                             </div>
-                            <div class='col-md-6'>
+                            <div class='col-md-6','row-px-1 px-0 py-3'>
                                 <img src='product_images/$product_image2' class='card-img-top' alt='$product_title'>
 
-                            </div>
-                            <div class='col-md-6'>
+                            </div> <br>
+                            <div class='col-md-7','row'>
                             <img src='product_images/$product_image3' class='card-img-top' alt='$product_title'>                        
                             </div>
                         </div>";
@@ -381,6 +381,48 @@ function cart_item(){
         }
         echo $count_cart_items;
     }
-    
 
+    function getreviews(){
+        global $con;
+    
+        //to get the username and review from the user_review table
+        if (!isset($_GET['user_review'])) {
+            $select_query = "SELECT * FROM `user_review` ORDER BY RAND() LIMIT 0,9";
+            $result_query = mysqli_query($con, $select_query);
+    
+            // Check if there are any reviews
+            if (mysqli_num_rows($result_query) > 0) {
+                // Loop through the results and display each review
+                while ($row = mysqli_fetch_assoc($result_query)) {
+                    $user_name = $row['username'];
+                    $user_review = $row['review'];
+    
+                    // Display the review
+                    echo "<div class='card'>";
+                    echo "<h4>$user_name</h4>";
+                    echo "<p>$user_review</p>";
+                    echo "</div>";
+                }
+            } else {
+                echo "No reviews found.";
+            }
+        }
+    }
+    
 ?>
+<!--
+    echo "<div class='col-md-4 mb-2'>
+        <div class='card'>
+        <img src='product_images/$product_image1' class='card-img-top' alt='$product_title'>
+        <div class='card-body'>
+            <h5 class='card-title'>$product_title</h5>
+            <p class='card-text'>$product_description</p>
+            <p class='card-text'>$product_contact</p>
+           
+            <p class='card-text'>" . "Price: $" . $product_price . "</p>
+            <a href='index.php?add_to_cart=$product_id' class='btn btn-primary'>Add to cart</a>
+            <a href='product_detail.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
+        </div>
+     </div>
+  </div>";
+-->

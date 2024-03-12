@@ -13,14 +13,16 @@
       }
       else
     {
-
-      
+      // Check if category title is empty
+            if(empty($breed_title)) {
+                echo "<script>alert('Please enter a valid category')</script>";
+            } else { 
       $insert_query="insert into  `categories` (category_title) values ('$category_title')";
       $result=mysqli_query ($con, $insert_query);
       if($result){
          echo "<script>alert('category has been inserted successfully')</script>";
       }
-
+   }
     } 
 
    }

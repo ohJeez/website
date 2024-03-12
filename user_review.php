@@ -3,9 +3,6 @@
   include('function/common_function.php');
 
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,9 +41,6 @@
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="user_review.php">Reviews</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup>1</sup></a>
                         </li>
                         <li class="nav-item">
@@ -77,17 +71,14 @@
         <div class="bg-light">
             <h3 class="text-center">PETRA</h3>
             <p class="text-center">Discover the new you.Your Happiness is one Wag Away</p>       
-         </div>
-
-        <!-- Fourth child -->
-      
-        <div class="row px-3">
+         </div>     
+         <div class="row px-3">
             <div class="col-md-10">
                 <!-- Products -->
                 <div class="row">
                     <!-- fetching products -->
                     <?php
-                    get_all_products();
+                    getreviews();
                     getunique_cat();
                     getunique_breeds();
                     ?>
@@ -124,12 +115,7 @@
             </div>
         
       
-      </div> 
-        <!-- Last child -->
-        <?php include("./includes/footer.php")
-        ?>
-    </div>
-
+      </div>    
     <!-- Bootstrap JS link -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

@@ -25,7 +25,7 @@
         <!-- First child -->
         <nav class="navbar navbar-expand-lg navbar-light bg-info">
             <div class="container-fluid">
-                <img src="./images/logo.jpg" class="logo">
+            <img src="https://www.shutterstock.com/image-vector/black-silhouette-paw-print-isolated-600nw-1042839922.jpg" class="logo">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -42,6 +42,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="user_review.php">Reviews</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup>1</sup></a>
@@ -77,12 +80,12 @@
         <!-- Third child -->
         <div class="bg-light">
             <h3 class="text-center">PETRA</h3>
-            <p class="text-center">Discover the new you. Elevate your everyday style with our fashion-forward clothing. Redefining the way you look at fashion.</p>
+            <p class="text-center">Discover the new you.Your Happiness is one Wag Away</p>
         </div>
 
         <!-- Fourth child -->
       
-        <div class="row px-3">
+        <div class="row px-3" >
             <div class="col-md-10">
                 <!-- Products -->
                 <div class="row">
@@ -99,10 +102,13 @@
                     
                 </div>
                 <!-- row end -->
+       
+    </div>
+    
             </div>
             <!-- col end -->
        
-            <!-- Breeds -->
+             <!-- Breeds -->
             <div class="col-md-2 bg-secondary p-0">
                 <ul class="navbar-nav me-auto text-center">
                     <li class="nav-item bg-info">
@@ -126,11 +132,40 @@
                    
                 </ul>
             </div>
-        
+            
+    
       
-      </div> 
+      </div>
+      <br>
+    </div>
+  <!-- Review Form -->
+<div class="container">
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-6">
+            <form action="./user_review.php" method="post" enctype="multipart/form-data">
+                <!-- Username Input -->
+                <div class="mb-3">
+                    <label for="user_name" class="form-label">Enter your Name</label>
+                    <input type="text" id="user_name" class="form-control" autocomplete="off" required="required" name="user_name"/>
+                </div>
+                <!-- Review Input -->
+                <div class="mb-3">
+                    <label for="user_review" class="form-label">Write your review here</label>
+                    <textarea class="form-control" id="user_review" name="user_review" rows="5" style="width: 100%;" required></textarea>
+                </div>
+                <!-- Submit Button -->
+                <div class="mb-3">
+                    <input type="submit" value="Submit" class="btn btn-info" name="user_register">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+<br>
         <!-- Last child -->
         <!-- include footer -->
+
         <?php include("./includes/footer.php")
         ?>
     </div>
@@ -139,3 +174,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<?php
+if (isset($_POST['user_register'])) {
+    // Get the user input
+    $username = $_POST['user_name'];
+    $userreview = $_POST['user_review'];
+
+    // Prepare the SQL statement
+    $insert_query = "INSERT INTO user_review (username,review) VALUES ($username, $userreview)";
+    
+    // Prepare the statement
+    $sql_execute = mysqli_query($con, $insert_query);
+
+    if ($sql_execute) {
+        echo "<script> alert('Data Successfully') </script>";
+    } 
+    else {
+        // Handle the error gracefully
+        die(mysqli_error($con));  
+    }
+}
+?>

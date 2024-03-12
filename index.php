@@ -1,3 +1,5 @@
+
++
 <?php
   include("includes/connect.php");
   include('function/common_function.php');
@@ -25,7 +27,7 @@
         <!-- First child -->
         <nav class="navbar navbar-expand-lg navbar-light bg-info">
             <div class="container-fluid">
-                <img src="./images/logo.jpg" class="logo">
+                <img src="https://www.shutterstock.com/image-vector/black-silhouette-paw-print-isolated-600nw-1042839922.jpg" class="logo">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -44,6 +46,9 @@
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="user_review.php">Reviews</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup><?php
                             cart_item();?></sup></a>
                         </li>
@@ -51,9 +56,8 @@
                             <a class="nav-link" href="#">Total Price:100/-</a>
                         </li> -->
                     </ul>
-                    <form class="d-flex"  action="search_product.php" method="get">
+                    <form class="d-flex"  action="search_product.php" method="get" >
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
-                        <input type="submit" value="Search" class='btn btn-outline-light' name="search_data_product">
                     </form>
                 </div>
             </div>
@@ -73,13 +77,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="./user_login.php">Login</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./admin/index.php">Admin</a>
+                </li>
             </ul>
         </nav>
 
         <!-- Third child -->
         <div class="bg-light">
             <h3 class="text-center">PETRA</h3>
-            <p class="text-center">Discover the new you. Your happiness is just one wag away.</p>
+            <p class="text-center">Discover the new you.Your Happiness is one Wag Away</p>        
         </div>
 
         <!-- Fourth child -->

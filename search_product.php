@@ -44,6 +44,9 @@
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="user_review.php">Reviews</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i><sup>1</sup></a>
                         </li>
                         <li class="nav-item">
@@ -73,8 +76,8 @@
         <!-- Third child -->
         <div class="bg-light">
             <h3 class="text-center">PETRA</h3>
-            <p class="text-center">Discover the new you. Elevate your everyday style with our fashion-forward clothing. Redefining the way you look at fashion.</p>
-        </div>
+            <p class="text-center">Discover the new you.Your Happiness is one Wag Away</p>
+                </div>
 
         <!-- Fourth child -->
       
