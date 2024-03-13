@@ -146,7 +146,7 @@ function getunique_breeds(){
     //condition to check isset or not
     if(isset($_GET['breed'])){
         $breed_id=$_GET['breed'];
-    $select_query="select * from `products` where breed_id=$breed_id";
+    $select_query="select * from `products` where breed_id='$breed_id'";
     $result_query=mysqli_query($con,$select_query);
     $num_rows=mysqli_num_rows($result_query);
     if($num_rows==0){

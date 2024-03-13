@@ -30,6 +30,10 @@
 
 <h2 class="text-center">Insert Breeds</h2>
 <form action="" method="post" class="mb-2 w-50 m-auto">
+<div class="input-group mb-3 w-90 mb-2">
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-receipt"></i></span>
+        <input type="text" class="form-control" name="breed_id" placeholder="Enter Breed ID as 'catagorynamebreed' first letter of each word as capital" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
     <div class="input-group mb-3 w-90 mb-2">
         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-receipt"></i></span>
         <input type="text" class="form-control" name="breed_title" placeholder="Insert Breed" aria-label="Username" aria-describedby="basic-addon1">

@@ -92,7 +92,7 @@ if (isset($_POST['user_register'])) {
         $select_query = "SELECT * FROM user_table WHERE username='$user_username' OR user_email='$user_email'";
         $result = mysqli_query($con, $select_query);
         $rows_count = mysqli_num_rows($result);
-
+        
         if ($rows_count > 0) {
             echo "<script>alert('Username or Email already exists')</script>";
         } else {
