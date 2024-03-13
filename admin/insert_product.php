@@ -93,7 +93,7 @@ if (isset($_POST['insert_product'])) {
             </div>
             <!-- Categories -->
             <div class="form-outline outline mb-4 w-50 m-auto">
-                <select name="product_category" id="" class="form-select">
+                <select name="product_category" id="product_category" class="form-select">
                     <option value="">Select a Category</option>
                     <?php
                         $select_query="Select * from `categories`";
@@ -112,7 +112,7 @@ if (isset($_POST['insert_product'])) {
             </div>
             <!-- Breeds -->
             <div class="form-outline outline mb-4 w-50 m-auto">
-                <select name="product_breeds" id="" class="form-select">
+                <select name="product_breeds" id="product_breeds" class="form-select">
                     <option value="">Select a Breed</option>
                     <?php
                         $select_query="Select * from `breeds`";
@@ -132,8 +132,7 @@ if (isset($_POST['insert_product'])) {
             <!-- image 1 -->
             <div class="form-outline outline mb-4 w-50 m-auto">
                 <label for="product_image1" class="form-label">Product Image 1</label>
-                <input type="file" name="product_image1" id="product_image1"
-                class="form-control">
+                <input type="file" name="product_image1" id="product_image1" class="form-control">
             </div>
 
             <!-- image 2 -->
@@ -173,40 +172,46 @@ if (isset($_POST['insert_product'])) {
     </div>
     
     <script>
-        function validateForm() {
-            // Get form inputs
-            var productTitle = document.getElementById("product_title").value;
-            var description = document.getElementById("description").value;
-            var productKeywords = document.getElementById("product_keywords").value;
-            var productCategory = document.getElementById("product_category").value;
-            var productBreeds = document.getElementById("product_breeds").value;
-            var productImage1 = document.getElementById("product_image1").value;
-            var productImage2 = document.getElementById("product_image2").value;
-            var productImage3 = document.getElementById("product_image3").value;
-            var productPrice = document.getElementById("product_price").value;
-            var productContact = document.getElementById("product_contact").value;
+    function validateForm() {
+        // Get form inputs
+        var productTitle = document.getElementById("product_title").value.trim();
+        var description = document.getElementById("description").value.trim();
+        var productKeywords = document.getElementById("product_keywords").value.trim();
+        var productCategory = document.getElementById("product_category").value.trim();
+        var productBreeds = document.getElementById("product_breeds").value.trim();
+        var productImage1 = document.getElementById("product_image1").value.trim();
+        var productImage2 = document.getElementById("product_image2").value.trim();
+        var productImage3 = document.getElementById("product_image3").value.trim();
+        var productPrice = document.getElementById("product_price").value.trim();
+        var productContact = document.getElementById("product_contact").value.trim();
 
-            // Check if any field is empty
-            if (productTitle === '' || description === '' || productKeywords === '' ||
-                productCategory === '' || productBreeds === '' || productPrice === '' ||
-                productContact === '' || productImage1 === '' || productImage2 === '' || productImage3 === '') {
-                alert('Please fill all the available fields');
-                return false;
-            }
-
-            // Check if file inputs have valid extensions
-            var validExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-            var extension1 = productImage1.split('.').pop().toLowerCase();
-            var extension2 = productImage2.split('.').pop().toLowerCase();
-            var extension3 = productImage3.split('.').pop().toLowerCase();
-
-            if (!validExtensions.includes(extension1) || !validExtensions.includes(extension2) || !validExtensions.includes(extension3)) {
-                alert('Please upload valid image files (jpg, jpeg, png, gif)');
-                return false;
-            }
-
-            return true; // Form is valid
+        // Check if any field is empty
+        if (isEmpty(productTitle) || isEmpty(description) || isEmpty(productKeywords) ||
+            isEmpty(productCategory) || isEmpty(productBreeds) || isEmpty(productPrice) ||
+            isEmpty(productContact) || isEmpty(productImage1) || isEmpty(productImage2) || isEmpty(productImage3)) {
+            alert('Please fill all the available fields');
+            return false;
         }
-    </script>
+
+        // Check if file inputs have valid extensions
+        var validExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+        var extension1 = productImage1.split('.').pop().toLowerCase();
+        var extension2 = productImage2.split('.').pop().toLowerCase();
+        var extension3 = productImage3.split('.').pop().toLowerCase();
+
+        if (!validExtensions.includes(extension1) || !validExtensions.includes(extension2) || !validExtensions.includes(extension3)) {
+            alert('Please upload valid image files (jpg, jpeg, png, gif)');
+            return false;
+        }
+
+        return true; // Form is valid
+    }
+
+    function isEmpty(str) {
+        return !str.trim();
+    }
+</script>
+
+
 </body>
 </html>

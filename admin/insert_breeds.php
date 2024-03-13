@@ -1,6 +1,7 @@
 <?php  
     include('../includes/connect.php');
     if(isset($_POST['insert_breeds'])) {
+        $breed_id = $_POST["breed_id"]; 
         $breed_title = $_POST['breed_title'];
 
         // Check if the breed already exists
@@ -16,7 +17,7 @@
                 echo "<script>alert('Please enter a breed title')</script>";
             } else {
                 // Insert the breed into the database
-                $insert_query = "INSERT INTO `breeds` (breed_title) VALUES ('$breed_title')";
+                $insert_query = "INSERT INTO `breeds` (breed_id, breed_title) VALUES ('$breed_id', '$breed_title')";
                 $result = mysqli_query($con, $insert_query);
                 if($result) {
                     echo "<script>alert('Breed has been inserted successfully')</script>";
@@ -27,6 +28,7 @@
         }
     }
 ?>
+
 
 <h2 class="text-center">Insert Breeds</h2>
 <form action="" method="post" class="mb-2 w-50 m-auto">
