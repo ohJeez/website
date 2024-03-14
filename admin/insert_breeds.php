@@ -11,11 +11,7 @@
 
         if($number > 0) {
             echo "<script>alert('This breed is already present in the database')</script>";
-        } else {
-            // Check if breed title is empty
-            if(empty($breed_title)) {
-                echo "<script>alert('Please enter a breed title')</script>";
-            } else {
+        }else {
                 // Insert the breed into the database
                 $insert_query = "INSERT INTO `breeds` (breed_id, breed_title) VALUES ('$breed_id', '$breed_title')";
                 $result = mysqli_query($con, $insert_query);
@@ -26,7 +22,6 @@
                 }
             }
         }
-    }
 ?>
 
 
@@ -45,3 +40,27 @@
         <input type="submit" class="bg-info border-0 p-2 my-2" name="insert_breeds" value="Insert Breed" aria-label="Username" aria-describedby="basic-addon1"> 
     </div>
 </form>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Add event listener to the form submission
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        // Prevent the default form submission
+        event.preventDefault();
+        
+        // Get form data
+        var formData = new FormData(this);
+        
+        // Check if breed title is empty
+        var breedTitle = formData.get('breed_title');
+        if (!breedTitle.trim()) {
+            alert('Please enter a breed title');
+            return;
+        }
+
+        // Rest of the form validation logic...
+
+        // If all validations pass, submit the form
+        this.submit();
+    });
+});
+    </script>

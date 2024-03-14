@@ -179,27 +179,41 @@ if (isset($_POST['insert_product'])) {
         var productKeywords = document.getElementById("product_keywords").value.trim();
         var productCategory = document.getElementById("product_category").value.trim();
         var productBreeds = document.getElementById("product_breeds").value.trim();
-        var productImage1 = document.getElementById("product_image1").value.trim();
-        var productImage2 = document.getElementById("product_image2").value.trim();
-        var productImage3 = document.getElementById("product_image3").value.trim();
+        var productImage1 = document.getElementById("product_image1").files[0];
+        var productImage2 = document.getElementById("product_image2").files[0];
+        var productImage3 = document.getElementById("product_image3").files[0];
         var productPrice = document.getElementById("product_price").value.trim();
         var productContact = document.getElementById("product_contact").value.trim();
 
         // Check if any field is empty
         if (isEmpty(productTitle) || isEmpty(description) || isEmpty(productKeywords) ||
             isEmpty(productCategory) || isEmpty(productBreeds) || isEmpty(productPrice) ||
-            isEmpty(productContact) || isEmpty(productImage1) || isEmpty(productImage2) || isEmpty(productImage3)) {
-            alert('Please fill all the available fields');
+            isEmpty(productContact) || !productImage1 || !productImage2 || !productImage3) {
+            alert('Please fill all the available fields and upload images');
             return false;
         }
 
-        // Check if file inputs have valid extensions
+        // Check if file inputs have valid extensions and size
         var validExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-        var extension1 = productImage1.split('.').pop().toLowerCase();
-        var extension2 = productImage2.split('.').pop().toLowerCase();
-        var extension3 = productImage3.split('.').pop().toLowerCase();
+        var isValidExtension = true;
 
-        if (!validExtensions.includes(extension1) || !validExtensions.includes(extension2) || !validExtensions.includes(extension3)) {
+        [productImage1, productImage2, productImage3].forEach(function(image) {
+            if (!image) {
+                isValidExtension = false;
+                return;
+            }
+
+            var extension = image.name.split('.').pop().toLowerCase();
+            if (!validExtensions.includes(extension)) {
+                isValidExtension = false;
+            }
+            if (image.size > 4 * 1024 * 1024) { // 4 MB limit
+                alert('Please upload images with size less than 4 MB');
+                isValidExtension = false;
+            }
+        });
+
+        if (!isValidExtension) {
             alert('Please upload valid image files (jpg, jpeg, png, gif)');
             return false;
         }
@@ -211,7 +225,6 @@ if (isset($_POST['insert_product'])) {
         return !str.trim();
     }
 </script>
-
 
 </body>
 </html>
